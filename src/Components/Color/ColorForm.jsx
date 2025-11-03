@@ -1,6 +1,6 @@
 import "./ColorForm.css";
 
-export default function ColorForm({ newColor, onAddColor }) {
+export default function ColorForm({ onAddColor }) {
   function handleAddColor(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
