@@ -1,4 +1,5 @@
 import "./ColorForm.css";
+import ColorInput from "./ColorInput";
 
 export default function ColorForm({ onAddColor }) {
   function handleAddColor(event) {
@@ -19,19 +20,19 @@ export default function ColorForm({ onAddColor }) {
         name="role"
       ></input>
       <label htmlFor="color-hex">Hex Value:</label>
-      <input
+      <ColorInput
         id="color-hex"
         type="color"
         defaultValue="#802922"
         name="hex"
-      ></input>
+      />
       <label htmlFor="color-contrast-text">Contrast Text:</label>
-      <input
+      <ColorInput
         id="color-contrast-text"
         type="color"
         defaultValue="#FFFFFF"
         name="contrastText"
-      ></input>
+      />
       <button className="color-form__button" type="submit">
         Add color
       </button>
