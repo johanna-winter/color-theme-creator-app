@@ -1,0 +1,4 @@
+.color-input__grouped {
+  display: flex;
+  flex-direction: column;
+}
