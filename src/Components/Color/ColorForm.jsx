@@ -1,17 +1,22 @@
 import "./ColorForm.css";
 import ColorInput from "./ColorInput";
 
-export default function ColorForm({ onAddColor }) {
-  function handleAddColor(event) {
+export default function ColorForm({ onAddColor, mode, onUpdateColor, color }) {
+  function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    onAddColor(data);
+
+    if (mode === "edit") {
+      onUpdateColor({ id: color.id, ...data });
+    } else {
+      onAddColor(data);
+    }
     // console.log("Does everything work? ", data);
     event.target.reset();
   }
   return (
-    <form className="color-form" onSubmit={handleAddColor}>
+    <form className="color-form" onSubmit={handleSubmit}>
       <label htmlFor="color-role">Role:</label>
       <input
         id="color-role"
@@ -34,7 +39,7 @@ export default function ColorForm({ onAddColor }) {
         name="contrastText"
       />
       <button className="color-form__button" type="submit">
-        Add color
+        {mode === "edit" ? "Update color" : "Add color"}
       </button>
     </form>
   );

@@ -8,6 +8,7 @@ import { uid } from "uid";
 function App() {
   const [colors, setColors] = useState(initialColors);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [editColor, setEditColor] = useState(false);
 
   function handleAddColor(newColor) {
     const newColorWithId = { id: uid(), ...newColor };
@@ -41,10 +42,27 @@ function App() {
     console.log(`The color with id ${id} won't be deleted.`);
   }
 
+  function handleEditColor(id) {
+    console.log(`The color with id ${id} will be edited.`);
+    if (editColor === id) {
+      setEditColor(false);
+    } else {
+      setEditColor(id);
+    }
+  }
+
+  function handleUpdateColor(updatedColor) {
+    setColors((prevColors) =>
+      prevColors.map((color) =>
+        color.id === updatedColor.id ? updatedColor : color
+      )
+    );
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm onAddColor={handleAddColor} />
+      <ColorForm mode="add" onAddColor={handleAddColor} />
       {colors.length === 0 ? (
         <p>No colors left... start by adding one!</p>
       ) : (
@@ -57,15 +75,14 @@ function App() {
                 showDeleteConfirm={confirmDelete === color.id}
                 onConfirmClick={() => handleConfirmDelete(color.id)}
                 onCancelClick={() => handleCancelDelete(color.id)}
+                onEditClick={() => handleEditColor(color.id)}
+                showEditForm={editColor === color.id}
+                onUpdateColor={handleUpdateColor}
               />
             </li>
           ))}
         </ul>
       )}
-      {/* <Color
-      {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}/> */}
     </>
   );
 }
