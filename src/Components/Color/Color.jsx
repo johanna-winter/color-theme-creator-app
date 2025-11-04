@@ -1,5 +1,6 @@
 import "./Color.css";
 import ColorForm from "./ColorForm";
+import CopyToClipboard from "./CopyToClipboard";
 
 export default function Color({
   color,
@@ -20,6 +21,7 @@ export default function Color({
       }}
     >
       <h3 className="color-card-highlight">{color.hex}</h3>
+      <CopyToClipboard text={color.hex} />
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {/* 
