@@ -9,6 +9,7 @@ export default function Color({
   showDeleteConfirm,
   onEditClick,
   showEditForm,
+  onUpdateColor,
 }) {
   return (
     <div
@@ -21,13 +22,24 @@ export default function Color({
       <h3 className="color-card-highlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {!showDeleteConfirm ? (
+      {/* 
+      1. When both delete and edit states are false, show both buttons
+      2. When delete mode is on (true), show only cancel/delete buttons
+      3. When edit mode is on (true), show only the edit form and hide the delete button
+       */}
+      {/* Default mode */}
+      {!showDeleteConfirm && !showEditForm && (
         <>
           <button type="submit" onClick={onDeleteClick}>
             Delete
           </button>
+          <button type="submit" onClick={onEditClick}>
+            Edit
+          </button>
         </>
-      ) : (
+      )}
+      {/* Delete mode */}
+      {showDeleteConfirm && (
         <>
           <p className="color-card-highlight">Really delete...?</p>
           <button type="submit" onClick={onCancelClick}>
@@ -38,12 +50,12 @@ export default function Color({
           </button>
         </>
       )}
-      {!showEditForm ? (
-        <button type="submit" onClick={onEditClick}>
-          Edit
-        </button>
-      ) : (
-        <ColorForm />
+      {/* Edit mode */}
+      {showEditForm && (
+        <>
+          <ColorForm mode="edit" onUpdateColor={onUpdateColor} color={color} />
+          <button onClick={onEditClick}>Cancel</button>
+        </>
       )}
     </div>
   );

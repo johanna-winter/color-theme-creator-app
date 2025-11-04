@@ -44,13 +44,25 @@ function App() {
 
   function handleEditColor(id) {
     console.log(`The color with id ${id} will be edited.`);
-    setEditColor(false);
+    if (editColor === id) {
+      setEditColor(false);
+    } else {
+      setEditColor(id);
+    }
+  }
+
+  function handleUpdateColor(updatedColor) {
+    setColors((prevColors) =>
+      prevColors.map((color) =>
+        color.id === updatedColor.id ? updatedColor : color
+      )
+    );
   }
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm onAddColor={handleAddColor} />
+      <ColorForm mode="add" onAddColor={handleAddColor} />
       {colors.length === 0 ? (
         <p>No colors left... start by adding one!</p>
       ) : (
@@ -65,15 +77,12 @@ function App() {
                 onCancelClick={() => handleCancelDelete(color.id)}
                 onEditClick={() => handleEditColor(color.id)}
                 showEditForm={editColor === color.id}
+                onUpdateColor={handleUpdateColor}
               />
             </li>
           ))}
         </ul>
       )}
-      {/* <Color
-      {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}/> */}
     </>
   );
 }
