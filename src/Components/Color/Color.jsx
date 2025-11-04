@@ -1,4 +1,5 @@
 import "./Color.css";
+import ColorForm from "./ColorForm";
 
 export default function Color({
   color,
@@ -6,6 +7,8 @@ export default function Color({
   onConfirmClick,
   onCancelClick,
   showDeleteConfirm,
+  onEditClick,
+  showEditForm,
 }) {
   return (
     <div
@@ -19,9 +22,11 @@ export default function Color({
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {!showDeleteConfirm ? (
-        <button type="submit" onClick={onDeleteClick}>
-          Delete
-        </button>
+        <>
+          <button type="submit" onClick={onDeleteClick}>
+            Delete
+          </button>
+        </>
       ) : (
         <>
           <p className="color-card-highlight">Really delete...?</p>
@@ -32,6 +37,13 @@ export default function Color({
             Delete
           </button>
         </>
+      )}
+      {!showEditForm ? (
+        <button type="submit" onClick={onEditClick}>
+          Edit
+        </button>
+      ) : (
+        <ColorForm />
       )}
     </div>
   );

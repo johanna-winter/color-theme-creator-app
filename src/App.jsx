@@ -8,6 +8,7 @@ import { uid } from "uid";
 function App() {
   const [colors, setColors] = useState(initialColors);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [editColor, setEditColor] = useState(false);
 
   function handleAddColor(newColor) {
     const newColorWithId = { id: uid(), ...newColor };
@@ -41,6 +42,11 @@ function App() {
     console.log(`The color with id ${id} won't be deleted.`);
   }
 
+  function handleEditColor(id) {
+    console.log(`The color with id ${id} will be edited.`);
+    setEditColor(false);
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
@@ -57,6 +63,8 @@ function App() {
                 showDeleteConfirm={confirmDelete === color.id}
                 onConfirmClick={() => handleConfirmDelete(color.id)}
                 onCancelClick={() => handleCancelDelete(color.id)}
+                onEditClick={() => handleEditColor(color.id)}
+                showEditForm={editColor === color.id}
               />
             </li>
           ))}
