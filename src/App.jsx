@@ -7,20 +7,66 @@ import { uid } from "uid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
   function handleAddColor(newColor) {
     const newColorWithId = { id: uid(), ...newColor };
     console.log("New color: ", newColorWithId);
     setColors([newColorWithId, ...colors]);
   }
+  function handleStartDelete(id) {
+    /* 1. If user clicks the delete button:
+        - useState variable confirmDelete to match the ID of the color that should be deleted.
+        - show a confirmation text "Really delete?" + 2 buttons (cancel, delete) in Color.jsx if state changes from false to true*/
+
+    console.log(`The color with id ${id} will start confirmation process.`);
+    setConfirmDelete(id);
+  }
+
+  function handleConfirmDelete(id) {
+    /* 2. If user confirms deletion:
+        - filter method to filter out the color with the id that was confirmed to be deleted
+        - update the state with setColors(updatedColors)*/
+    const updatedColors = colors.filter((color) => color.id !== id);
+    console.log(`The color with ${id} will be deleted.`);
+    setColors(updatedColors);
+    setConfirmDelete(false);
+  }
+
+  /* 3. If user clicks cancel button:
+        - hide the confirmation text
+        - reset back to false*/
+  function handleCancelDelete(id) {
+    setConfirmDelete(false);
+    console.log(`The color with id ${id} won't be deleted.`);
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm onAddColor={handleAddColor} />
+      {colors.length === 0 ? (
+        <p>No colors left... start by adding one!</p>
+      ) : (
+        <ul className="color-card__list">
+          {colors.map((color) => (
+            <li className="color-card__list-item" key={color.id}>
+              <Color
+                color={color}
+                onDeleteClick={() => handleStartDelete(color.id)}
+                showDeleteConfirm={confirmDelete === color.id}
+                onConfirmClick={() => handleConfirmDelete(color.id)}
+                onCancelClick={() => handleCancelDelete(color.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+      {/* <Color
       {colors.map((color) => {
         return <Color key={color.id} color={color} />;
-      })}
+      })}/> */}
     </>
   );
 }
-
 export default App;
