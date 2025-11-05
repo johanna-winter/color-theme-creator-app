@@ -21,7 +21,7 @@ export default function ColorForm({ onAddColor, mode, onUpdateColor, color }) {
       <input
         id="color-role"
         type="text"
-        defaultValue="primary main"
+        defaultValue="define role here"
         name="role"
       ></input>
       <label htmlFor="color-hex">Hex Value:</label>

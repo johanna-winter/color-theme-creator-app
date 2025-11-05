@@ -1,5 +1,6 @@
 import "./Color.css";
 import ColorForm from "./ColorForm";
+import ContrastScore from "./ContrastScore";
 import CopyToClipboard from "./CopyToClipboard";
 
 export default function Color({
@@ -24,6 +25,7 @@ export default function Color({
       <CopyToClipboard text={color.hex} />
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
+      <ContrastScore hex={color.hex} contrastText={color.contrastText} />
       {/* 
       1. When both delete and edit states are false, show both buttons
       2. When delete mode is on (true), show only cancel/delete buttons
