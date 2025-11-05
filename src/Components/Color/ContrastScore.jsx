@@ -1,3 +1,4 @@
+import "./ContrastScore.css";
 import { useEffect, useState } from "react";
 
 export default function ContrastScore({ hex, contrastText }) {
@@ -30,5 +31,13 @@ export default function ContrastScore({ hex, contrastText }) {
     return <p>Checking contrast...</p>;
   }
 
-  return <p>Overall contrast score: {score?.overall}</p>;
+  return (
+    <>
+      <p
+        className={`contrast-score contrast-score__${score.overall.toLowerCase()}`}
+      >
+        Overall contrast score: {score?.overall}
+      </p>
+    </>
+  );
 }

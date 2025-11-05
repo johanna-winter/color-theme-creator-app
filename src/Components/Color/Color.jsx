@@ -33,14 +33,14 @@ export default function Color({
        */}
       {/* Default mode */}
       {!showDeleteConfirm && !showEditForm && (
-        <>
+        <div>
           <button type="submit" onClick={onDeleteClick}>
             Delete
           </button>
           <button type="submit" onClick={onEditClick}>
             Edit
           </button>
-        </>
+        </div>
       )}
       {/* Delete mode */}
       {showDeleteConfirm && (
