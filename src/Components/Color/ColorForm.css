@@ -9,7 +9,17 @@
 
 .color-form__button {
   margin-top: 15px;
-  border-radius: 8px;
+  border-radius: 12px;
+  border: 1px solid #f14355;
+  font-weight: bold;
+  background-color: #f14355;
+  color: #e3f1fd;
+}
+
+.color-form__button:hover {
+  cursor: pointer;
+  background-color: #1467bd;
+  border: 1px solid #1467bd;
 }
 
 .color-form__hex-row {

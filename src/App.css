@@ -1,9 +1,20 @@
 body {
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  padding: 10px;
+  padding-top: 80px;
 }
 
 h1 {
   display: block;
   text-align: center;
+}
+
+.header__title {
+  padding: 15px;
+  background-color: #00255f;
+  color: #e3f1fd;
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }

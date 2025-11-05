@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-      <h1>Theme Creator</h1>
+      <h1 className="header__title">Theme Creator</h1>
 
       <ColorForm mode="add" onAddColor={handleAddColor} />
 
