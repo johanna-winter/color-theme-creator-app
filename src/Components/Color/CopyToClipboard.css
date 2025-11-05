@@ -1,0 +1,18 @@
+.copy-button {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5px 50px;
+  margin: 0;
+  border: 1px solid #fffae9;
+  background: #000;
+  color: #fffae9;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.copy-button:hover {
+  background-color: #fffae9;
+  color: #000;
+  border: 1px solid #000;
+}

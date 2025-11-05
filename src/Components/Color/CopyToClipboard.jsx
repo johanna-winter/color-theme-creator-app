@@ -1,3 +1,4 @@
+import "./CopyToClipboard.css";
 import { useEffect, useState } from "react";
 
 export default function CopyToClipboard({ text }) {
@@ -20,7 +21,7 @@ export default function CopyToClipboard({ text }) {
     };
   }, [copied]);
   return (
-    <button type="button" onClick={handleCopy}>
+    <button className="copy-button" type="button" onClick={handleCopy}>
       {copied ? "Successfully copied!" : "Copy"}
     </button>
   );

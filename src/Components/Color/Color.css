@@ -1,6 +1,43 @@
 .color-card {
-  margin: 0px 10px;
-  padding: 5px;
+  width: 100%;
+  max-width: 480px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+}
+
+.color-card__inner-content {
+  max-width: 420px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  align-items: center;
+}
+
+.color-card__list {
+  display: grid;
+  grid-template-columns: 1fr; /*mobile: 1 card per row*/
+  padding: 0;
+  margin: 2rem 0;
+  justify-items: center;
+}
+@media (min-width: 600px) {
+  .color-card__list {
+    grid-template-columns: repeat(2, 1fr); /*tablet: 2 cards per row*/
+  }
+}
+@media (min-width: 900px) {
+  .color-card__list {
+    grid-template-columns: repeat(3, 1fr); /*desktop: 3 cards per row*/
+  }
+}
+
+.color-card__list-item {
+  list-style: none;
+  width: 100%;
 }
 
 .color-card-highlight {
@@ -10,9 +47,17 @@
   color: white;
 }
 
-.color-card__list {
-  padding-left: 0px;
+.color-card__default-mode,
+.color-card__delete-mode {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 }
-.color-card__list-item {
-  list-style: none;
+
+.color-card__edit-mode {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 }
