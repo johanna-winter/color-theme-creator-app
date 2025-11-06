@@ -1,6 +1,11 @@
 import "./ColorForm.css";
 import ColorInput from "./ColorInput";
 
+// function Greeting(felixName, johannaName, isJohannaMode) {
+//   console.log("Hello" + isJohannaMode ? johannaName : felixName);
+// }
+// Greeting("Felix", "Johanna", true);
+
 export default function ColorForm({ onAddColor, mode, onUpdateColor, color }) {
   function handleSubmit(event) {
     event.preventDefault();
